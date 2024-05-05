@@ -14,7 +14,12 @@ COPY installer.sh .
 RUN bash installer.sh
 
 # changing workdir
-WORKDIR "/root/Teemsoha"
+RUN git clone https://github.com/Teemsoha/Ultroi.git /root/Ultroi
 
-# start the bot.
+WORKDIR /root/Ultroi
+
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+ENV PATH="/home/Ultroi/bin:$PATH"
+
 CMD ["bash", "startup"]
